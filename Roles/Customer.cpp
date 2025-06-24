@@ -5,6 +5,7 @@ using namespace std;
 
 Customer::Customer(std::string uname , std::string pwd) : User(uname , pwd){
     hasAuthority=false;
+    isdeleted=false;
 };
 
 int Customer::showmenu(){
@@ -17,6 +18,17 @@ int Customer::showmenu(){
     cout<<"Enter your choice"<<endl;
     cin>>choice;
     return choice;
+}
+
+string Customer::getUsername(){
+    return username;
+}
+
+bool Customer::deleted(int i){
+    if(i){
+        isdeleted=true;
+    }
+    return isdeleted;
 }
 
 

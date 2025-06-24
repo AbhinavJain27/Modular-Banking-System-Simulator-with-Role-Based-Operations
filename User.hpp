@@ -5,8 +5,8 @@
 
 class User{
 protected:
-    std::string role,username , password;
-    bool hasAuthority;
+    std::string username , password;
+    bool hasAuthority,isdeleted;
 
 public:
     User(std::string uname , std:: string pwd){
@@ -14,6 +14,8 @@ public:
         password=pwd;
     }
     virtual int showmenu()=0;
+    virtual string getUsername()=0;
+    virtual bool deleted(int i)=0;
 
 };
 

@@ -14,6 +14,8 @@ public:
     void withdraw(double amt);
     void deposit(double amt);
     void printStatement();
+    int getAccountNumber();
+    bool deleted(int i);    
 
 };
 

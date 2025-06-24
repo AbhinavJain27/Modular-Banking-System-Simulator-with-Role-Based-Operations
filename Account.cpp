@@ -32,3 +32,14 @@ void Account::printStatement(){
         cout<<Transaction_History[i]<<endl;
     }
 }
+
+int Account::getAccountNumber(){
+    return accNo;
+}
+
+bool Account::deleted(int i){
+    if(i){
+        isDeleted=true;
+    }
+    return isDeleted;
+}
