@@ -9,13 +9,11 @@ protected:
     bool hasAuthority,isdeleted;
 
 public:
-    User(std::string uname , std:: string pwd){
-        username=uname;
-        password=pwd;
-    }
+    User(std::string uname , std:: string pwd);
     virtual int showmenu()=0;
-    virtual string getUsername()=0;
-    virtual bool deleted(int i)=0;
+    string getUsername();
+    bool deleted(int i);
+    string getPassword();
 
 };
 

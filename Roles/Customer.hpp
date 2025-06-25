@@ -8,8 +8,7 @@ class Customer : public User{
 public:
     Customer(std::string uname , std::string pwd);
     int showmenu() override;
-    string getUsername() override;
-    bool deleted(int i) override;
+    
 };
 
 

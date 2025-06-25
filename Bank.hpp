@@ -6,6 +6,7 @@
 class Account;
 class Admin;
 class Customer;
+class User;
 
 class Bank{
 protected:
@@ -27,7 +28,7 @@ public:
 
 
     //authenticate
-    void authenticate(std:: string role);
+    User* authenticate(std:: string role , std:: string uname , std:: string pwd);
 
     ~Bank(); /*deletion becomes necessary to avoid ram leakage; stack variables can not
             be used because they get deleted at the end of the function therefore

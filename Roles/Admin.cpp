@@ -18,17 +18,6 @@ int Admin::showmenu(){
     return choice;
 }
 
-string Admin::getUsername(){
-    return username;
-}
-
-bool Admin::deleted(int i){
-    if(i){
-        isdeleted=true;
-    }
-    return isdeleted;
-}
-
 
 
 

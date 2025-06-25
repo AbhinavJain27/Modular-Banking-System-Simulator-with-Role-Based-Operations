@@ -5,6 +5,7 @@
 #include "Roles/Admin.hpp"
 #include "Roles/Customer.hpp"
 #include "Account.hpp"
+#include "User.hpp"
 using namespace std;
 
 void Bank::addAccount(int accNo , int pin){
@@ -87,6 +88,40 @@ void Bank::deleteUser(string role , string uname){
     }
     cout<<"User deleted successfully.";
         return;
+}
+
+User* Bank::authenticate(string role , string uname , string pwd){
+    if(role=="Admin"){
+        for(auto admin:admin_list){
+            if(admin->getUsername()==uname){
+                if(admin->getPassword()==pwd){
+                    return admin;
+                }
+                else{
+                    cout<<"Invalid username or password";
+                    return nullptr;
+                }
+            }
+        }
+        cout<<"Username not found."<<endl;
+    }
+
+    if(role=="Customer"){
+        for(auto customer:customer_list){
+            if(customer->getUsername()==uname){
+                if(customer->getPassword()==pwd){
+                    return customer;
+                }
+                else{
+                    cout<<"Invalid username or password";
+                    return nullptr;
+                }
+            }
+        }
+        cout<<"Username not found."<<endl;
+    }
+
+    return nullptr;
 }
 
 Bank::~Bank(){
