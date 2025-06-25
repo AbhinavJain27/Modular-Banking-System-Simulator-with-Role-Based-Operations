@@ -15,17 +15,20 @@ protected:
     std:: vector<Customer*> customer_list;
 
 public:
+    //basic functions
+    int showMenu();
+    int roleType();
+    User* perform();
+    void startBank();
+
+
     //addition and deletion of accounts
     void addAccount(int accNo , int pin);
-    int findAccount(int accNo);
-    void deleteAccount(int accNo);
-
+    Account* findAccount(int accNo);
 
     //addition and deletion of users
     void addUser(std::string role , std:: string uname , std:: string pwd);
-    int findUser(std:: string role,std::string uname);
-    void deleteUser(std:: string role , std::string uname);
-
+    User* findUser(std:: string role,std::string uname);
 
     //authenticate
     User* authenticate(std:: string role , std:: string uname , std:: string pwd);

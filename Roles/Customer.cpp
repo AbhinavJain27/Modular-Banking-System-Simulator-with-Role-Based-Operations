@@ -20,6 +20,13 @@ int Customer::showmenu(){
     return choice;
 }
 
+void Customer::performAction(){
+    // int choice = showmenu();
+    // switch(choice){
+    //     case 1: cout<<get
+    // }
+}
+
 
 
 

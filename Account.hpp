@@ -11,11 +11,17 @@ protected:
     std::vector<std::string> Transaction_History;
 public:
     explicit Account(int acc , int pin);
+
+    int getAccountNumber();
+
     void withdraw(double amt);
     void deposit(double amt);
+    double checkBalance(); 
     void printStatement();
-    int getAccountNumber();
-    bool deleted(int i);    
+    
+    bool deleted(); 
+    void deleteAccount(); 
+     
 
 };
 

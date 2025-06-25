@@ -11,9 +11,16 @@ protected:
 public:
     User(std::string uname , std:: string pwd);
     virtual int showmenu()=0;
+    virtual void performAction()=0;
+
     string getUsername();
-    bool deleted(int i);
+
+    bool deleted();
+    void deleteUser();
+
     string getPassword();
+    void changePassword(std::string uname , std:: string newpwd);
+    
 
 };
 

@@ -18,6 +18,10 @@ int Admin::showmenu(){
     return choice;
 }
 
+void Admin:: performAction(){
+    
+}
+
 
 
 

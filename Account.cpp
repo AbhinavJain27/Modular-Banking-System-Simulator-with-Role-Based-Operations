@@ -37,9 +37,14 @@ int Account::getAccountNumber(){
     return accNo;
 }
 
-bool Account::deleted(int i){
-    if(i){
-        isDeleted=true;
-    }
+bool Account::deleted(){
     return isDeleted;
+}
+
+double Account::checkBalance(){
+    return balance;
+}
+
+void Account::deleteAccount(){
+    isDeleted=true;
 }

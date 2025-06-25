@@ -17,9 +17,17 @@ string User::getPassword(){
     return password;
 }
 
-bool User::deleted(int i){
-    if(i){
-        isdeleted=true;
-    }
+bool User::deleted(){
     return isdeleted;
+}
+
+void User::changePassword(string uname , string newpwd){
+    if(uname==username){
+        password=newpwd;
+    }
+    else cout<<"User not found."<<endl;
+}
+
+void User::deleteUser(){
+    isdeleted=true;
 }

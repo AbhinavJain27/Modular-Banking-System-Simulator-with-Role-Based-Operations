@@ -8,55 +8,97 @@
 #include "User.hpp"
 using namespace std;
 
+int Bank::showMenu(){
+    int choice;
+    cout << "==== Menu ===="<<endl;
+    cout << "1. Login"<<endl;
+    cout << "2. SignUp"<<endl;
+    cout<<"Enter your choice"<<endl;
+    cin>>choice;
+    return choice;
+}
+
+int Bank::roleType(){
+    int choice;
+    cout<<"Enter the number that corresponds to your type of role:"<<endl;
+    cout << "1. Customer"<<endl;
+    cout << "2. Admin"<<endl;
+    cout<<"Enter your choice"<<endl;
+    cin>>choice;
+    return choice;
+}
+
+User* Bank::perform(){
+    int choice=showMenu();
+    int choice2=roleType();
+    vector<string> roles = {"Customer" , "Admin"};
+
+    string uname , pwd;
+    cout<<"Enter your username:"<<endl;
+    cin>>uname;
+    cout<<"Enter your password:"<<endl;
+    cin>>pwd;
+    if(choice==1){
+        User* entry = authenticate(roles[choice2-1] , uname , pwd);
+        if(entry==nullptr) return nullptr;
+        return entry;
+    }
+    if(choice==2){
+        addUser(roles[choice2-1] , uname , pwd);
+    }
+    
+    return nullptr;
+}
+
+void Bank::startBank(){
+    User* user=perform();
+    user->performAction();
+}
+
 void Bank::addAccount(int accNo , int pin){
     Account* acc = new Account(accNo, pin);
     account_list.push_back(acc);
 }
 
-int Bank::findAccount(int accNo){
-    for(int i=0 ; i<account_list.size() ; i++){
-        if(account_list[i]->getAccountNumber()==accNo){
-            if(account_list[i]->deleted(0)){
-                cout<<"Your Account has been deleted.";
-                return -1;
+Account* Bank::findAccount(int accNo){
+    for(auto account:account_list){
+        if(account->getAccountNumber()==accNo){
+            if(account->deleted()){
+                cout<<"This Account has been deleted.";
+                return nullptr;
             }
-            return i;
+            return account;
         }
     }
 
     cout<<"Account not found.";
-    return -1;
+    return nullptr;
 }
 
-void Bank::deleteAccount(int accNo){
-    int accId=findAccount(accNo);
-    if(accId!=-1){
-        account_list[accId]->deleted(1);
-    }
-
-    cout<<"Your Account has been deleted.";
-}
-
-
-//now user management functions will come
-
-int Bank::findUser(string role, string uname){
+User* Bank::findUser(string role, string uname){
     if(role=="Admin"){
-        for(int i=0 ; i<admin_list.size();i++){
-            if(admin_list[i]->getUsername()==uname){
-                if(admin_list[i]->deleted(0)){
-                    return -1;
-                }
-                return i;
+        for(auto admin:admin_list){
+            if(admin->getUsername()==uname){
+                if(admin->deleted()) return nullptr;
+                return admin;
             }
         }
-
-        return -1;
     }
+
+    if(role=="Customer"){
+        for(auto customer:customer_list){
+            if(customer->getUsername()==uname){
+                if(customer->deleted()) return nullptr;
+                return customer;
+            }
+        }
+    }
+
+    return nullptr;
 }
 
 void Bank::addUser(string role ,string uname , string pwd){
-    if(findUser(role , uname)!=-1){
+    if(findUser(role , uname)!=nullptr){
         cout<<"Please choose another username.";
         return;
     }
@@ -75,53 +117,14 @@ void Bank::addUser(string role ,string uname , string pwd){
     
 }
 
-void Bank::deleteUser(string role , string uname){
-    int uindex = findUser(role,uname);
-    if(uindex==-1){
-        cout<<"User not found";
-    }
-    if(role=="Admin"){
-        admin_list[uindex]->deleted(1);
-    }
-    else if(role=="Customer"){
-        customer_list[uindex]->deleted(1);
-    }
-    cout<<"User deleted successfully.";
-        return;
-}
-
 User* Bank::authenticate(string role , string uname , string pwd){
-    if(role=="Admin"){
-        for(auto admin:admin_list){
-            if(admin->getUsername()==uname){
-                if(admin->getPassword()==pwd){
-                    return admin;
-                }
-                else{
-                    cout<<"Invalid username or password";
-                    return nullptr;
-                }
-            }
-        }
-        cout<<"Username not found."<<endl;
+    User* entry = findUser(role, uname);
+    if(entry==nullptr) return nullptr;
+    if(entry->getPassword()!=pwd){
+        cout<<"Incorrect username or password."<<endl;
+        return nullptr;
     }
-
-    if(role=="Customer"){
-        for(auto customer:customer_list){
-            if(customer->getUsername()==uname){
-                if(customer->getPassword()==pwd){
-                    return customer;
-                }
-                else{
-                    cout<<"Invalid username or password";
-                    return nullptr;
-                }
-            }
-        }
-        cout<<"Username not found."<<endl;
-    }
-
-    return nullptr;
+    return entry;
 }
 
 Bank::~Bank(){
