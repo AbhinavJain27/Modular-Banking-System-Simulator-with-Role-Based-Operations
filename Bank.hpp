@@ -13,17 +13,17 @@ protected:
     std:: vector<Account*> account_list;  
     std:: vector<Admin*> admin_list; 
     std:: vector<Customer*> customer_list;
+    int last_used_account_number=100000;
 
 public:
     //basic functions
     int showMenu();
     int roleType();
-    User* perform();
-    void startBank();
-
+    void perform(Bank* bank);
 
     //addition and deletion of accounts
-    void addAccount(int accNo , int pin);
+    int getAccountNumber(int i);
+    void addAccount(int pin);
     Account* findAccount(int accNo);
 
     //addition and deletion of users

@@ -5,6 +5,8 @@
 using namespace std;
 
 int main(){
-    Bank* Bank;
+    Bank* bank= new Bank();
+    bank->perform(bank);
     
+
 }
