@@ -23,7 +23,7 @@ public:
 
     //addition and deletion of accounts
     int getAccountNumber(int i);
-    void addAccount(int pin);
+    void addAccount(int pin , std::string uname);
     Account* findAccount(int accNo);
 
     //addition and deletion of users

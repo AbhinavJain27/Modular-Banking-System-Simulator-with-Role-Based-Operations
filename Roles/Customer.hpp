@@ -16,7 +16,11 @@ public:
     void performAction(Bank* bank) override;  
     void returnMenu(Bank* bank) override;
     
-    void add_Account(Bank* bank , int pin); 
+    void add_Account(Bank* bank , int pin , std::string uname); 
+    void viewBB();
+    void balance_change(Account* account , int amt , int withOrDep);
+    void transferFunds(int acc2, int amt , int withOrDep , Bank* bank);
+    Account* trackAccount(int acc);
     ~Customer(); 
 };
 

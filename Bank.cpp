@@ -10,7 +10,7 @@ using namespace std;
 
 int Bank::showMenu(){
     int choice;
-    cout << "==== Menu ===="<<endl;
+    cout << "==== Login/SignUp ===="<<endl;
     cout << "1. Login"<<endl;
     cout << "2. SignUp"<<endl;
     cout<<"Enter your choice"<<endl;
@@ -62,8 +62,8 @@ int Bank::getAccountNumber(int i){
     return last_used_account_number-1;
 }
 
-void Bank::addAccount( int pin){
-    Account* acc = new Account(getAccountNumber(1), pin);
+void Bank::addAccount( int pin, string uname){
+    Account* acc = new Account(getAccountNumber(1), pin , uname);
     account_list.push_back(acc);
 }
 

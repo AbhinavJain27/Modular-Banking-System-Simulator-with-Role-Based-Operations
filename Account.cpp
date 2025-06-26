@@ -4,9 +4,10 @@
 #include <string>
 using namespace std;
 
-Account::Account(int acc , int pin){
+Account::Account(int acc , int pin, string uname){
     accNo=acc;
     this->pin=pin;
+    username=uname;
     balance=0;
     isDeleted=false;
     Transaction_History.push_back("Account created.");
@@ -15,6 +16,7 @@ Account::Account(int acc , int pin){
 void Account::withdraw(double amt){
     if(balance>=amt){
         balance-=amt;
+        cout<<to_string(amt) + " rupees withdrawn."<<endl;
         Transaction_History.push_back(to_string(amt) + " rupees withdrawn.");
     }
 
@@ -23,6 +25,7 @@ void Account::withdraw(double amt){
 
 void Account::deposit(double amt){
     balance+=amt;
+    cout<<to_string(amt) + " rupees deposited."<<endl;
     Transaction_History.push_back(to_string(amt) + " rupees deposited.");    
 }
 
@@ -36,6 +39,8 @@ void Account::printStatement(){
 int Account::getAccountNumber(){
     return accNo;
 }
+
+string Account::getUsername(){ return username;}
 
 bool Account::deleted(){
     return isDeleted;
